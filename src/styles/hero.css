@@ -1,0 +1,39 @@
+@layer components {
+  .hero-background-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    --hero-tint: color-mix(
+      in srgb,
+      var(--secondary-foreground) 20%,
+      transparent
+    );
+    --hero-fade-height: 6rem;
+
+    background:
+      linear-gradient(to top, var(--background), transparent) bottom / 100%
+        var(--hero-fade-height) no-repeat,
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--secondary-foreground) 25%, transparent),
+        transparent,
+        color-mix(in srgb, var(--secondary-foreground) 35%, transparent)
+      ),
+      linear-gradient(var(--hero-tint), var(--hero-tint));
+  }
+
+  .dark .hero-background-overlay {
+    --hero-tint: color-mix(
+      in srgb,
+      var(--secondary-foreground) 35%,
+      transparent
+    );
+  }
+
+  @media (min-width: 40rem) {
+    .hero-background-overlay {
+      --hero-fade-height: 8rem;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+/* Khớp với cssVar: { key: "o-dau" } trong AntdProvider. */
+.o-dau {
+  --ant-color-bg-layout: var(--background) !important;
+  --ant-color-bg-container: var(--card) !important;
+  --ant-color-bg-elevated: var(--popover) !important;
+
+  --ant-color-text: var(--foreground) !important;
+  --ant-color-text-heading: var(--foreground) !important;
+  --ant-color-text-secondary: var(--muted-foreground) !important;
+  --ant-color-text-placeholder: var(--muted-foreground) !important;
+
+  --ant-color-border: var(--input) !important;
+  --ant-color-border-secondary: var(--border) !important;
+}
+
+/* Input bên trong khung mật khẩu. */
+.auth-floating-input input {
+  background-color: transparent !important;
+  color: var(--foreground) !important;
+  caret-color: var(--foreground);
+}
+
+input.auth-floating-input {
+  caret-color: var(--foreground);
+}
+
+.auth-floating-input .ant-input-password-icon {
+  color: var(--muted-foreground) !important;
+}
+
+/* Đồng bộ nền của input bên trong ô mật khẩu. */
+.auth-floating-input input {
+  background: transparent !important;
+  color: var(--foreground) !important;
+}
+
+/* Ghi đè màu khi trình duyệt tự điền email hoặc mật khẩu. */
+input.auth-floating-input:autofill,
+.auth-floating-input input:autofill,
+input.auth-floating-input:-webkit-autofill,
+.auth-floating-input input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--card) inset !important;
+  box-shadow: 0 0 0 1000px var(--card) inset !important;
+  -webkit-text-fill-color: var(--foreground) !important;
+  caret-color: var(--foreground);
+}
+
+/* Giữ chữ nhập tối thiểu 16px để tránh tự zoom khi focus. */
+input.auth-floating-input,
+.auth-floating-input input.ant-input {
+  font-size: 16px !important;
+}

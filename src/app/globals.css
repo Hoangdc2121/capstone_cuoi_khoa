@@ -1,26 +1,204 @@
+/* Tailwind CSS */
 @import "tailwindcss";
 
+/* Các class animation */
+@import "tw-animate-css";
+
+/* Style nền tảng của shadcn */
+@import "shadcn/tailwind.css";
+
+/* Cho phép dùng dark: khi phần tử cha có class "dark" */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==================== LIGHT MODE ==================== */
 :root {
+  color-scheme: light;
+
+  /* Nền toàn trang → bg-background */
   --background: #ffffff;
-  --foreground: #171717;
+
+  /* Chữ chính → text-foreground */
+  --foreground: #252025;
+
+  /* Nền card và chữ trong card */
+  --card: #ffffff;
+  --card-foreground: #252025;
+
+  /* Dropdown, popover */
+  --popover: #ffffff;
+  --popover-foreground: #252025;
+
+  /* Màu chính: nút tìm kiếm, đặt phòng → bg-primary */
+  --primary: #e63a54;
+
+  /* Chữ trên nền primary → text-primary-foreground */
+  --primary-foreground: #ffffff;
+
+  /* Hover nút chính → hover:bg-primary-hover */
+  --primary-hover: #ad2c3f;
+
+  /* Khi nhấn nút chính → active:bg-primary-active */
+  --primary-active: #902435;
+
+  /* Nút phụ, badge, điểm nhấn hồng nhạt → bg-secondary */
+  --secondary: #f5b0bb;
+  --secondary-foreground: #252025;
+
+  /* Nền dịu: skeleton, placeholder ảnh → bg-muted */
+  --muted: #fff1f3;
+
+  /* Chữ phụ: mô tả, địa chỉ, chú thích */
+  --muted-foreground: #676767;
+
+  /* Hover menu, lựa chọn phụ → hover:bg-accent */
+  --accent: #fce1e6;
+  --accent-foreground: #ad2c3f;
+
+  /* Hành động nguy hiểm, báo lỗi → text-destructive */
+  --destructive: #b42318;
+
+  /* Viền card, đường phân cách → border-border */
+  --border: #ecdde0;
+
+  /* Viền input, select, textarea → border-input */
+  --input: #dfcbd0;
+
+  /* Vòng focus → focus-visible:ring-ring */
+  --ring: #ad2c3f;
+
+  /* Giá trị gốc để tính độ bo góc */
+  --radius: 0.75rem;
 }
 
+/* ==================== DARK MODE ==================== */
+.dark {
+  color-scheme: dark;
+
+  /* Nền toàn trang và chữ chính */
+  --background: #171315;
+  --foreground: #ffffff;
+
+  /* Card */
+  --card: #231c1f;
+  --card-foreground: #ffffff;
+
+  /* Dropdown, popover */
+  --popover: #231c1f;
+  --popover-foreground: #ffffff;
+
+  /* Nút chính */
+  --primary: #e63a54;
+  --primary-foreground: #ffffff;
+  --primary-hover: #ad2c3f;
+  --primary-active: #902435;
+
+  /* Nút phụ */
+  --secondary: #f5b0bb;
+  --secondary-foreground: #252025;
+
+  /* Nền dịu và chữ phụ */
+  --muted: #30252a;
+  --muted-foreground: #c5b8bd;
+
+  /* Hover menu, lựa chọn phụ */
+  --accent: #45242e;
+  --accent-foreground: #f5b0bb;
+
+  /* Hành động nguy hiểm, báo lỗi */
+  --destructive: #ff938a;
+
+  /* Viền và vòng focus */
+  --border: #49363e;
+  --input: #59414b;
+  --ring: #f5b0bb;
+}
+
+/* ==================== ĐĂNG KÝ VỚI TAILWIND ==================== */
 @theme inline {
+  /* Nội dung, menu, form, nút → font-sans */
+  --font-sans: var(--font-be-vietnam-pro);
+
+  /* Tiêu đề → font-heading */
+  --font-heading: var(--font-bricolage-grotesque);
+
+  /* Nền trang và chữ chính */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Card */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* Dropdown, popover */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Nút chính và các trạng thái */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+
+  /* Nút phụ */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* Nền dịu và chữ phụ */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Hover, lựa chọn phụ */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* Màu lỗi */
+  --color-destructive: var(--destructive);
+
+  /* Viền và vòng focus */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Bo góc: tương ứng 8px, 10px, 12px, 16px */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ==================== STYLE MẶC ĐỊNH ==================== */
+@layer base {
+  /* Đặt màu viền mặc định; cần thêm border để hiện viền */
+  * {
+    @apply border-border;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Nền, chữ và font mặc định toàn trang */
+  body {
+    @apply bg-background font-sans text-foreground;
+  }
+
+  /* Các tiêu đề tự dùng Bricolage Grotesque */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+
+  /* Các control kế thừa font từ phần tử cha */
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  /* Màu khi bôi đen văn bản */
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
 }
